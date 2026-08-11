@@ -1,0 +1,53 @@
+# Dependências
+
+/node_modules/
+/.pnp
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
+
+# Testes
+
+/coverage/
+
+# Next.js
+
+/.next/
+/out/
+/dist/
+
+# Variáveis de ambiente
+
+.env*
+!.env.example
+
+# Vercel
+
+.vercel/
+
+# TypeScript
+
+next-env.d.ts
+*.tsbuildinfo
+
+# Logs e caches
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+/.sites-runtime/
+
+# Configurações locais de ferramentas
+
+/.openai/
+/.claude/
+/.codex/
+
+# Arquivos locais
+
+.DS_Store
+*.pem
