@@ -259,6 +259,59 @@ A aplicação compara instantes completos, não apenas o dia do calendário. Um 
 
 ```mermaid
 erDiagram
+    ORGANIZACOES {
+        string id PK
+        string nome
+        string tipo
+        boolean ativo
+    }
+
+    PERFIS {
+        string id PK
+        string organizacao_id FK
+        string nome_completo
+        string papel
+    }
+
+    COLABORADORES {
+        string id PK
+        string empresa_id FK
+        string nome_completo
+        string cpf
+        string matricula
+        string cargo
+    }
+
+    RECURSOS_CLINICA {
+        string id PK
+        string clinica_id FK
+        string nome
+        int duracao_padrao_minutos
+    }
+
+    AGENDAMENTOS_OCUPACIONAIS {
+        string id PK
+        string empresa_id FK
+        string clinica_id FK
+        string colaborador_id FK
+        string recurso_clinica_id FK
+        string tipo_exame
+        string status
+        date data_referencia
+        date data_limite
+        datetime inicio_agendado
+        datetime fim_agendado
+    }
+
+    EVENTOS_AGENDAMENTO {
+        string id PK
+        string agendamento_id FK
+        string status_anterior
+        string status_atual
+        string descricao
+        datetime ocorrido_em
+    }
+
     ORGANIZACOES ||--o{ PERFIS : possui
     ORGANIZACOES ||--o{ COLABORADORES : emprega
     ORGANIZACOES ||--o{ RECURSOS_CLINICA : disponibiliza
@@ -266,59 +319,6 @@ erDiagram
     COLABORADORES ||--o{ AGENDAMENTOS_OCUPACIONAIS : recebe
     RECURSOS_CLINICA o|--o{ AGENDAMENTOS_OCUPACIONAIS : aloca
     AGENDAMENTOS_OCUPACIONAIS ||--o{ EVENTOS_AGENDAMENTO : registra
-
-    ORGANIZACOES {
-        uuid id PK
-        text nome
-        enum tipo
-        boolean ativo
-    }
-
-    PERFIS {
-        uuid id PK
-        uuid organizacao_id FK
-        text nome_completo
-        enum papel
-    }
-
-    COLABORADORES {
-        uuid id PK
-        uuid empresa_id FK
-        text nome_completo
-        text cpf
-        text matricula
-        text cargo
-    }
-
-    RECURSOS_CLINICA {
-        uuid id PK
-        uuid clinica_id FK
-        text nome
-        int duracao_padrao_minutos
-    }
-
-    AGENDAMENTOS_OCUPACIONAIS {
-        uuid id PK
-        uuid empresa_id FK
-        uuid clinica_id FK
-        uuid colaborador_id FK
-        uuid recurso_clinica_id FK
-        enum tipo_exame
-        enum status
-        date data_referencia
-        date data_limite
-        timestamptz inicio_agendado
-        timestamptz fim_agendado
-    }
-
-    EVENTOS_AGENDAMENTO {
-        uuid id PK
-        uuid agendamento_id FK
-        enum status_anterior
-        enum status_atual
-        text descricao
-        timestamptz ocorrido_em
-    }
 ```
 
 `organizacoes.tipo` diferencia empresa e clínica. Um agendamento guarda simultaneamente `empresa\id` e `clinica\id`; por isso a mesma tabela pode ser consultada pelos dois participantes sem duplicar o processo.
