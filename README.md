@@ -12,6 +12,18 @@ A documentação foi dividida em três READMEs para facilitar a leitura e a orga
 |[README de negócio](./README-NEGOCIO.md)|Fluxos separados de RH e clínica, responsabilidades, estados, prazos, indicadores, exceções e diagramas Mermaid|
 |[README de uso de IA](./README-USO-IA.md)|Pesquisa do domínio, decisões assistidas, evolução do fluxo, correções, validação e limites do uso de Inteligência Artificial|
 
+## Demonstração online
+
+Além das instruções para instalar e executar o projeto localmente, a aplicação também foi publicada na Vercel para facilitar a avaliação.
+
+Como o banco de dados de demonstração está hospedado na nuvem AWS por meio do Supabase, o fluxo completo pode ser testado diretamente pelo navegador, sem necessidade de configurar o ambiente local.
+
+**Acesse a aplicação:**
+
+[Ciclo Ocupacional — demonstração online](https://ciclo-ocupacional.vercel.app)
+
+Na tela inicial, selecione o acesso de demonstração de **RH** ou **Clínica**. As credenciais serão preenchidas automaticamente.
+
 ## Fluxo resumido
 
 ```mermaid
