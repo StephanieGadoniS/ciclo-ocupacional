@@ -246,12 +246,12 @@ Há validação em mais de um nível de propósito:
 |-|-|-|-|
 |`Solicitado`, dentro do prazo|**Definir horário** e **Cancelar**|Primeiro horário exige futuro, dia útil, 30 minutos, expediente, ausência de conflito e data dentro do prazo|Acompanhar ou cancelar|
 |`Solicitado`, prazo encerrado|Somente **Cancelar**|RPC recusa o primeiro horário depois da data limite|Acompanhar ou cancelar|
-|`Agendado`, antes do início exato|**Reagendar**, **Cancelar** e desfechos desabilitados|RPCs de realizado/falta recusam enquanto `inicio\\\_agendado > now()`|Acompanhar ou cancelar|
+|`Agendado`, antes do início exato|**Reagendar**, **Cancelar** e desfechos desabilitados|RPCs de realizado/falta recusam enquanto `inicio\agendado > now()`|Acompanhar ou cancelar|
 |`Agendado`, no instante de início ou depois|**Reagendar**, **Cancelar**, **Não compareceu** e **Marcar como realizado**|RPC valida clínica participante e estado `agendado`|Acompanhar ou cancelar|
 |`Não compareceu`|**Reagendar** e **Cancelar**|Reagendamento pode ultrapassar o prazo original, mas ainda exige horário futuro e válido|Acompanhar ou cancelar|
 |`Realizado` ou `Cancelado`|Consulta|Triggers impedem retorno a estado operacional|Consulta|
 
-A aplicação compara instantes completos, não apenas o dia do calendário. Um atendimento às `10:00` continua com os desfechos bloqueados às `09:59` e os libera a partir das `10:00`. Horários de expediente e dias úteis são interpretados em `America/Sao\\\_Paulo`; os instantes persistidos são `timestamptz` e comparados com `now()` no PostgreSQL.
+A aplicação compara instantes completos, não apenas o dia do calendário. Um atendimento às `10:00` continua com os desfechos bloqueados às `09:59` e os libera a partir das `10:00`. Horários de expediente e dias úteis são interpretados em `America/Sao Paulo`; os instantes persistidos são `timestamptz` e comparados com `now()` no PostgreSQL.
 
 ## Banco de dados
 
