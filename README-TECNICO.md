@@ -132,9 +132,9 @@ Existe uma decisão pragmática: `PortalDoCiclo` atua como **composition root** 
 
 |Camada|Local|O que contém|Pode depender de|
 |-|-|-|-|
-|Domínio|`src/modulos/\\\*/dominio`|Entidades, estados, políticas, erros e tipos de negócio|TypeScript e código do próprio domínio|
+|Domínio|`src/modulos/dominio`|Entidades, estados, políticas, erros e tipos de negócio|TypeScript e código do próprio domínio|
 |Aplicação|`src/modulos/agendamentos/aplicacao`|Casos de uso e portas|Domínio e abstrações compartilhadas|
-|Infraestrutura|`src/modulos/\\\*/infraestrutura` e `src/infraestrutura`|Auth, consultas Supabase, RPCs e repositório em memória|Aplicação, domínio e SDKs externos|
+|Infraestrutura|`src/modulos/infraestrutura` e `src/infraestrutura`|Auth, consultas Supabase, RPCs e repositório em memória|Aplicação, domínio e SDKs externos|
 |Apresentação|`src/componentes` e `app`|Páginas, modais, feedback, navegação e composição|Aplicação, domínio e infraestrutura no composition root|
 |Persistência/segurança|`supabase`|Schema, RLS, RPCs, seed e testes SQL|PostgreSQL/Supabase|
 
