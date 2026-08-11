@@ -23,6 +23,18 @@ Documentação de arquitetura, infraestrutura, segurança, instalação, execuç
 * [Solução de problemas](#solução-de-problemas)
 * [Decisões e trade-offs](#decisões-e-trade-offs)
 
+## Demonstração online
+
+Além das instruções para instalar e executar o projeto localmente, a aplicação também foi publicada na Vercel para facilitar a avaliação.
+
+Como o banco de dados de demonstração está hospedado na nuvem AWS por meio do Supabase, o fluxo completo pode ser testado diretamente pelo navegador, sem necessidade de configurar o ambiente local.
+
+**Acesse a aplicação:**
+
+[Ciclo Ocupacional — demonstração online](https://ciclo-ocupacional.vercel.app)
+
+Na tela inicial, selecione o acesso de demonstração de **RH** ou **Clínica**. As credenciais serão preenchidas automaticamente.
+
 ## Visão técnica
 
 O Ciclo é uma aplicação full stack em TypeScript. A interface React acessa o Supabase diretamente com uma chave pública e a sessão do usuário. A segurança não depende de esconder botões: PostgreSQL, Row Level Security (RLS), funções RPC e triggers validam organização, papel, estado e regras temporais.
