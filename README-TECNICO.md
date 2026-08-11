@@ -331,12 +331,12 @@ erDiagram
 * retorno ao trabalho exige `dias\afastamento >= 30`;
 * agendamento confirmado exige recurso, início e fim coerentes;
 * a primeira marcação exige horário futuro dentro da data limite ocupacional;
-* reagendamentos de estados `agendado` ou `nao\compareceu` podem ultrapassar o prazo original, sem alterar esse prazo nem retirar a classificação de atraso;
+* reagendamentos de estados `agendado` ou `nao compareceu` podem ultrapassar o prazo original, sem alterar esse prazo nem retirar a classificação de atraso;
 * o início precisa cair em uma grade de 30 minutos;
 * início e término precisam ocorrer de segunda a sexta-feira;
 * início e término precisam permanecer no expediente entre `08:00` e `18:00`;
 * cancelamento exige motivo entre cinco e 180 caracteres;
-* realização exige `realizado\em`;
+* realização exige `realizado em`;
 * realizado e não comparecimento exigem que o horário exato de início já tenha chegado;
 * um recurso clínico não pode ter dois horários `agendado` sobrepostos;
 * não pode existir outra solicitação aberta equivalente para o mesmo colaborador, tipo e referência;
@@ -347,13 +347,13 @@ erDiagram
 
 |Função|Quem executa|Finalidade|
 |-|-|-|
-|`listar\colaboradores\autorizados()`|RH e clínica autenticados|Retorna somente colaboradores relacionados e apenas os dois últimos dígitos do CPF|
-|`confirmar\horario\agendamento(...)`|Clínica|Exige o prazo na primeira marcação e permite reagendar fluxos já agendados ou com falta, preservando futuro, duração, dia útil, expediente e conflito|
-|`concluir\agendamento(uuid)`|Clínica|Marca como realizado somente no instante de início ou depois dele|
-|`registrar\nao\comparecimento(uuid)`|Clínica|Registra ausência somente no instante de início ou depois dele|
-|`cancelar\agendamento(uuid, text)`|RH ou clínica participante|Encerra fluxo aberto com justificativa|
-|`organizacao\do\usuario()`|Sessão autenticada|Resolve a organização para as policies|
-|`papel\do\usuario()`|Sessão autenticada|Resolve RH ou clínica para as policies/RPCs|
+|`listar colaboradores autorizados()`|RH e clínica autenticados|Retorna somente colaboradores relacionados e apenas os dois últimos dígitos do CPF|
+|`confirmar horario agendamento(...)`|Clínica|Exige o prazo na primeira marcação e permite reagendar fluxos já agendados ou com falta, preservando futuro, duração, dia útil, expediente e conflito|
+|`concluir agendamento(uuid)`|Clínica|Marca como realizado somente no instante de início ou depois dele|
+|`registrar nao comparecimento(uuid)`|Clínica|Registra ausência somente no instante de início ou depois dele|
+|`cancelar agendamento(uuid, text)`|RH ou clínica participante|Encerra fluxo aberto com justificativa|
+|`organizacao do usuario()`|Sessão autenticada|Resolve a organização para as policies|
+|`papel do usuario()`|Sessão autenticada|Resolve RH ou clínica para as policies/RPCs|
 
 ### Auditoria e Realtime
 
