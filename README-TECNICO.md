@@ -261,11 +261,11 @@ A aplicação compara instantes completos, não apenas o dia do calendário. Um 
 erDiagram
     ORGANIZACOES ||--o{ PERFIS : possui
     ORGANIZACOES ||--o{ COLABORADORES : emprega
-    ORGANIZACOES ||--o{ RECURSOS\_CLINICA : disponibiliza
-    ORGANIZACOES ||--o{ AGENDAMENTOS\_OCUPACIONAIS : participa
-    COLABORADORES ||--o{ AGENDAMENTOS\_OCUPACIONAIS : recebe
-    RECURSOS\_CLINICA o|--o{ AGENDAMENTOS\_OCUPACIONAIS : aloca
-    AGENDAMENTOS\_OCUPACIONAIS ||--o{ EVENTOS\_AGENDAMENTO : registra
+    ORGANIZACOES ||--o{ RECURSOS_CLINICA : disponibiliza
+    ORGANIZACOES ||--o{ AGENDAMENTOS_OCUPACIONAIS : participa
+    COLABORADORES ||--o{ AGENDAMENTOS_OCUPACIONAIS : recebe
+    RECURSOS_CLINICA o|--o{ AGENDAMENTOS_OCUPACIONAIS : aloca
+    AGENDAMENTOS_OCUPACIONAIS ||--o{ EVENTOS_AGENDAMENTO : registra
 
     ORGANIZACOES {
         uuid id PK
@@ -276,48 +276,48 @@ erDiagram
 
     PERFIS {
         uuid id PK
-        uuid organizacao\_id FK
-        text nome\_completo
+        uuid organizacao_id FK
+        text nome_completo
         enum papel
     }
 
     COLABORADORES {
         uuid id PK
-        uuid empresa\_id FK
-        text nome\_completo
+        uuid empresa_id FK
+        text nome_completo
         text cpf
         text matricula
         text cargo
     }
 
-    RECURSOS\_CLINICA {
+    RECURSOS_CLINICA {
         uuid id PK
-        uuid clinica\_id FK
+        uuid clinica_id FK
         text nome
-        int duracao\_padrao\_minutos
+        int duracao_padrao_minutos
     }
 
-    AGENDAMENTOS\_OCUPACIONAIS {
+    AGENDAMENTOS_OCUPACIONAIS {
         uuid id PK
-        uuid empresa\_id FK
-        uuid clinica\_id FK
-        uuid colaborador\_id FK
-        uuid recurso\_clinica\_id FK
-        enum tipo\_exame
+        uuid empresa_id FK
+        uuid clinica_id FK
+        uuid colaborador_id FK
+        uuid recurso_clinica_id FK
+        enum tipo_exame
         enum status
-        date data\_referencia
-        date data\_limite
-        timestamptz inicio\_agendado
-        timestamptz fim\_agendado
+        date data_referencia
+        date data_limite
+        timestamptz inicio_agendado
+        timestamptz fim_agendado
     }
 
-    EVENTOS\_AGENDAMENTO {
+    EVENTOS_AGENDAMENTO {
         uuid id PK
-        uuid agendamento\_id FK
-        enum status\_anterior
-        enum status\_atual
+        uuid agendamento_id FK
+        enum status_anterior
+        enum status_atual
         text descricao
-        timestamptz ocorrido\_em
+        timestamptz ocorrido_em
     }
 ```
 
