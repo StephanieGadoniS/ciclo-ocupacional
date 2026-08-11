@@ -73,25 +73,25 @@ cp .env.example .env.local
 
 Abra o arquivo `.env.local`. Inicialmente, ele estará com as variáveis sem preenchimento:
 
+Abra o arquivo `.env.local`. Inicialmente, ele estará com as variáveis sem preenchimento:
+
 ```env
-NEXT\_PUBLIC\_MODO\_DEMONSTRACAO=
-NEXT\_PUBLIC\_URL\_DA\_APLICACAO=
-NEXT\_PUBLIC\_SUPABASE\_URL=
-NEXT\_PUBLIC\_SUPABASE\_ANON\_KEY=
+NEXT_PUBLIC_MODO_DEMONSTRACAO=
+NEXT_PUBLIC_URL_DA_APLICACAO=
+NEXT_PUBLIC_SUPABASE_URL=
+NEXT_PUBLIC_SUPABASE_ANON_KEY=
 ```
 
 Para executar o projeto conectado ao ambiente de demonstração, preencha o arquivo da seguinte forma:
 
 ```env
-NEXT\_PUBLIC\_MODO\_DEMONSTRACAO=true
-NEXT\_PUBLIC\_URL\_DA\_APLICACAO=http://localhost:3000
-NEXT\_PUBLIC\_SUPABASE\_URL=https://fwcewlxktzatfuuwpwwm.supabase.co
-NEXT\_PUBLIC\_SUPABASE\_ANON\_KEY=SUPABASE\_SERVICE\_ROLE\_KEY=SUA\_CHAVE\_SECRETA
+NEXT_PUBLIC_MODO_DEMONSTRACAO=true
+NEXT_PUBLIC_URL_DA_APLICACAO=http://localhost:3000
+NEXT_PUBLIC_SUPABASE_URL=https://fwcewlxktzatfuuwpwwm.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=sb_publishable_kovEIcV8OyHRZkB8xcVp7g_n-wJYJnS
 
-SUPABASE\_SERVICE\_ROLE\_KEY=sb\_secret\_8b8bQVegg7oT7CsK1nOtPw\_iY93c2av
+SUPABASE_SERVICE_ROLE_KEY=sb_secret_8b8bQVegg7oT7CsK1nOtPw_iY93c2av
 ```
-
-O arquivo `.env.local` está protegido pelo `.gitignore` e não deve ser enviado ao repositório.
 
 
 
