@@ -27,7 +27,7 @@ flowchart TD
 
 Você pode clonar o repositório com o Git ou fazer o download pelo botão **Code → Download ZIP** do GitHub.
 
-### 1\. Clone o repositório
+### 1. Clone o repositório
 
 ```bash
 git clone https://github.com/StephanieGadoniS/ciclo-ocupacional.git
@@ -36,7 +36,7 @@ cd ciclo-ocupacional
 
 Caso tenha baixado o arquivo ZIP, extraia-o e abra o terminal dentro da pasta que contém o arquivo `package.json`.
 
-### 2\. Verifique o Node.js
+### 2. Verifique o Node.js
 
 ```bash
 node --version
@@ -45,7 +45,7 @@ npm --version
 
 O projeto requer **Node.js 22.13.0 ou superior**.
 
-### 3\. Instale as dependências
+### 3. Instale as dependências
 
 ```bash
 npm ci
@@ -53,7 +53,7 @@ npm ci
 
 Esse comando utiliza o `package-lock.json` para instalar as versões exatas das dependências do projeto.
 
-### 4\. Configure as variáveis de ambiente
+### 4. Configure as variáveis de ambiente
 
 Crie o arquivo `.env.local` a partir do exemplo disponível no repositório.
 
@@ -95,7 +95,7 @@ SUPABASE_SERVICE_ROLE_KEY=sb_secret_8b8bQVegg7oT7CsK1nOtPw_iY93c2av
 
 
 
-### 7\. Inicie a aplicação
+### 5. Inicie a aplicação
 
 ```bash
 npm run dev
@@ -114,7 +114,7 @@ Na tela inicial, selecione um dos perfis:
 
 As senhas são preenchidas automaticamente ao selecionar o perfil desejado.
 
-### 8\. Valide o projeto
+### 6. Valide o projeto
 
 Para executar o lint, a verificação do TypeScript e os testes automatizados:
 
@@ -132,13 +132,13 @@ npm run build
 
 ### Segurança
 
-O arquivo `.env.local`, as chaves do Supabase, a pasta `node\_modules` e os artefatos de build não acompanham o repositório e não devem ser enviados ao GitHub.
+O arquivo `.env.local`, as chaves do Supabase, a pasta `node\modules` e os artefatos de build não acompanham o repositório.
 
 ## Limite funcional
 
 O Ciclo armazena somente informações administrativas relacionadas às solicitações e aos agendamentos. Prontuários, diagnósticos, resultados médicos, ASOs e anexos clínicos não fazem parte deste MVP.
 
-O arquivo .env.local, as chaves do Supabase e a pasta node\_modules não acompanham o repositório e não devem ser enviados ao GitHub.
+O arquivo .env.local, as chaves do Supabase e a pasta node\modules não acompanham o repositório e não devem ser enviados ao GitHub.
 
 ## Próximos passos
 
