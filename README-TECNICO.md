@@ -170,7 +170,7 @@ Existe uma decisão pragmática: `PortalDoCiclo` atua como **composition root** 
 |`PaginaAgendaClinica`|Pendências, agenda confirmada e acesso ao atendimento|
 |`PaginaColaboradores`|Consulta da equipe e abertura de solicitação pelo RH|
 
-O `ModalAgendarExame` recebe a única agenda ativa, **Medicina do Trabalho**, e a seleciona automaticamente. Depois gera candidatos de 30 em 30 minutos entre `08:00` e `17:30` e cruza cada intervalo com os agendamentos `agendado`, usando a regra de sobreposição de intervalo semiaberto `\\\[início, fim)`. Os dados usados nesse filtro já passaram pela RLS e são atualizados por Realtime. Esse filtro melhora a experiência, mas não substitui a constraint de exclusão do PostgreSQL, que continua sendo a proteção final contra reservas simultâneas.
+O `ModalAgendarExame` recebe a única agenda ativa, **Medicina do Trabalho**, e a seleciona automaticamente. Depois gera candidatos de 30 em 30 minutos entre `08:00` e `17:30` e cruza cada intervalo com os agendamentos `agendado`, usando a regra de sobreposição de intervalo semiaberto `[início, fim)`. Os dados usados nesse filtro já passaram pela RLS e são atualizados por Realtime. Esse filtro melhora a experiência, mas não substitui a constraint de exclusão do PostgreSQL, que continua sendo a proteção final contra reservas simultâneas.
 
 ## Estrutura de diretórios
 
@@ -321,22 +321,22 @@ erDiagram
     }
 ```
 
-`organizacoes.tipo` diferencia empresa e clínica. Um agendamento guarda simultaneamente `empresa\\\_id` e `clinica\\\_id`; por isso a mesma tabela pode ser consultada pelos dois participantes sem duplicar o processo.
+`organizacoes.tipo` diferencia empresa e clínica. Um agendamento guarda simultaneamente `empresa\id` e `clinica\id`; por isso a mesma tabela pode ser consultada pelos dois participantes sem duplicar o processo.
 
 ### Proteções de integridade
 
 * colaborador precisa pertencer à empresa do agendamento;
 * recurso precisa pertencer à clínica do agendamento;
 * empresa e clínica devem ser organizações distintas;
-* retorno ao trabalho exige `dias\\\_afastamento >= 30`;
+* retorno ao trabalho exige `dias\afastamento >= 30`;
 * agendamento confirmado exige recurso, início e fim coerentes;
 * a primeira marcação exige horário futuro dentro da data limite ocupacional;
-* reagendamentos de estados `agendado` ou `nao\\\_compareceu` podem ultrapassar o prazo original, sem alterar esse prazo nem retirar a classificação de atraso;
+* reagendamentos de estados `agendado` ou `nao\compareceu` podem ultrapassar o prazo original, sem alterar esse prazo nem retirar a classificação de atraso;
 * o início precisa cair em uma grade de 30 minutos;
 * início e término precisam ocorrer de segunda a sexta-feira;
 * início e término precisam permanecer no expediente entre `08:00` e `18:00`;
 * cancelamento exige motivo entre cinco e 180 caracteres;
-* realização exige `realizado\\\_em`;
+* realização exige `realizado\em`;
 * realizado e não comparecimento exigem que o horário exato de início já tenha chegado;
 * um recurso clínico não pode ter dois horários `agendado` sobrepostos;
 * não pode existir outra solicitação aberta equivalente para o mesmo colaborador, tipo e referência;
@@ -347,17 +347,17 @@ erDiagram
 
 |Função|Quem executa|Finalidade|
 |-|-|-|
-|`listar\\\_colaboradores\\\_autorizados()`|RH e clínica autenticados|Retorna somente colaboradores relacionados e apenas os dois últimos dígitos do CPF|
-|`confirmar\\\_horario\\\_agendamento(...)`|Clínica|Exige o prazo na primeira marcação e permite reagendar fluxos já agendados ou com falta, preservando futuro, duração, dia útil, expediente e conflito|
-|`concluir\\\_agendamento(uuid)`|Clínica|Marca como realizado somente no instante de início ou depois dele|
-|`registrar\\\_nao\\\_comparecimento(uuid)`|Clínica|Registra ausência somente no instante de início ou depois dele|
-|`cancelar\\\_agendamento(uuid, text)`|RH ou clínica participante|Encerra fluxo aberto com justificativa|
-|`organizacao\\\_do\\\_usuario()`|Sessão autenticada|Resolve a organização para as policies|
-|`papel\\\_do\\\_usuario()`|Sessão autenticada|Resolve RH ou clínica para as policies/RPCs|
+|`listar\colaboradores\autorizados()`|RH e clínica autenticados|Retorna somente colaboradores relacionados e apenas os dois últimos dígitos do CPF|
+|`confirmar\horario\agendamento(...)`|Clínica|Exige o prazo na primeira marcação e permite reagendar fluxos já agendados ou com falta, preservando futuro, duração, dia útil, expediente e conflito|
+|`concluir\agendamento(uuid)`|Clínica|Marca como realizado somente no instante de início ou depois dele|
+|`registrar\nao\comparecimento(uuid)`|Clínica|Registra ausência somente no instante de início ou depois dele|
+|`cancelar\agendamento(uuid, text)`|RH ou clínica participante|Encerra fluxo aberto com justificativa|
+|`organizacao\do\usuario()`|Sessão autenticada|Resolve a organização para as policies|
+|`papel\do\usuario()`|Sessão autenticada|Resolve RH ou clínica para as policies/RPCs|
 
 ### Auditoria e Realtime
 
-Triggers gravam em `eventos\\\_agendamento` a criação, confirmação, reagendamento, realização, ausência e cancelamento. A interface assina mudanças de `agendamentos\\\_ocupacionais` pelo Supabase Realtime, filtrando `empresa\\\_id` para RH ou `clinica\\\_id` para clínica. Existe também o botão de atualização manual como contingência.
+Triggers gravam em `eventos\agendamento` a criação, confirmação, reagendamento, realização, ausência e cancelamento. A interface assina mudanças de `agendamentos\ocupacionais` pelo Supabase Realtime, filtrando `empresa\id` para RH ou `clinica\id` para clínica. Existe também o botão de atualização manual como contingência.
 
 ## Autenticação e autorização
 
@@ -398,7 +398,7 @@ O papel não é inferido pelo e-mail e não existe seletor manual de perfil. O u
 Windows CMD:
 
 ```bat
-cd /d "C:\\\\Users\\\\User\\\\Documents\\\\ciclo-ocupacional-repositorio\\\\ciclo-ocupacional"
+cd /d "C:\Users\User\Documents\ciclo-ocupacional-repositorio\ciclo-ocupacional"
 ```
 
 Linux, macOS ou Git Bash:
@@ -422,7 +422,7 @@ O Node precisa retornar `v22.13.0` ou uma versão superior.
 npm ci
 ```
 
-Use `npm ci`, e não `npm install`, para respeitar exatamente o `package-lock.json`. A pasta `node\\\_modules` não acompanha o ZIP.
+Use `npm ci`, e não `npm install`, para respeitar exatamente o `package-lock.json`. A pasta `node\modules` não acompanha o ZIP.
 
 ### 4\. Crie o ambiente local
 
@@ -446,19 +446,21 @@ Configure as variáveis de ambiente
 Abra o arquivo `.env.local`. Inicialmente, ele estará com as variáveis sem preenchimento:
 
 ```env
-NEXT\_PUBLIC\_MODO\_DEMONSTRACAO=
-NEXT\_PUBLIC\_URL\_DA\_APLICACAO=
-NEXT\_PUBLIC\_SUPABASE\_URL=
-NEXT\_PUBLIC\_SUPABASE\_ANON\_KEY=
+NEXT_PUBLIC_MODO_DEMONSTRACAO=
+NEXT_PUBLIC_URL_DA_APLICACAO=
+NEXT_PUBLIC_SUPABASE_URL=
+NEXT_PUBLIC_SUPABASE_ANON_KEY=
 ```
 
 Para executar o projeto conectado ao ambiente de demonstração, preencha o arquivo da seguinte forma:
 
 ```env
-NEXT\_PUBLIC\_MODO\_DEMONSTRACAO=true
-NEXT\_PUBLIC\_URL\_DA\_APLICACAO=http://localhost:5173
-NEXT\_PUBLIC\_SUPABASE\_URL=https://fwcewlxktzatfuuwpwwm.supabase.co
-NEXT\_PUBLIC\_SUPABASE\_ANON\_KEY=sb\_publishable\_kovEIcV8OyHRZkB8xcVp7g\_n-wJYJnS
+NEXT_PUBLIC_MODO_DEMONSTRACAO=true
+NEXT_PUBLIC_URL_DA_APLICACAO=http://localhost:3000
+NEXT_PUBLIC_SUPABASE_URL=https://fwcewlxktzatfuuwpwwm.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=sb_publishable_kovEIcV8OyHRZkB8xcVp7g_n-wJYJnS
+
+SUPABASE_SERVICE_ROLE_KEY=sb_secret_8b8bQVegg7oT7CsK1nOtPw_iY93c2av
 ```
 
 ### 5\. Inicie o desenvolvimento
@@ -549,7 +551,7 @@ A aplicação utiliza o Next.js com App Router e é publicada na Vercel. O naveg
 * perfil e organização resolvidos pelo `auth.uid()`;
 * RLS habilitado em todas as tabelas operacionais;
 * nenhuma permissão de tabela para `anon`;
-* operações críticas por funções `security definer` com `search\\\_path` explícito;
+* operações críticas por funções `security definer` com `search\path` explícito;
 * validação de papel e organização dentro das RPCs;
 * constraints e triggers para integridade e transição;
 * auditoria operacional por evento;
@@ -580,7 +582,7 @@ Instale Git for Windows e execute os comandos de qualidade/build no Git Bash, ou
 |RPCs para comandos críticos|Transação e autorização no banco|Regras precisam ser mantidas coerentes entre TS e SQL|
 |Validação duplicada|Boa UX e segurança contra cliente contornado|Exige testes para evitar divergência|
 |Realtime + atualização manual|Atualização rápida com contingência|Não existe fila garantida nem notificação externa|
-|Uma agenda clínica ativa|**Medicina do Trabalho** resolve duração, grade de 30 minutos, dias úteis, expediente fixo e conflito no MVP|O modelo ainda preserva `recursos\\\_clinica` para evolução, mas não oferece escolha entre agendas na interface|
+|Uma agenda clínica ativa|**Medicina do Trabalho** resolve duração, grade de 30 minutos, dias úteis, expediente fixo e conflito no MVP|O modelo ainda preserva `recursos\clinica` para evolução, mas não oferece escolha entre agendas na interface|
 |CPF reduzido no banco|Minimiza dado pessoal exposto ao navegador|Consultas precisam usar a RPC autorizada|
 |Sem prontuário|Mantém o recorte administrativo e reduz risco|Conteúdo médico exige outro módulo e governança própria|
 
